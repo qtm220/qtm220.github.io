@@ -34,8 +34,7 @@ jobs:
       - name: Unzip 
         run: |
           for file in $(find _site -name '*.html.gz'); do  
-            echo "unzipping $file"
-            gzip --decompress $file
+            gunzip $file --verbose
           done
       - name: Encrypt pages with PageCrypt
         run: |
