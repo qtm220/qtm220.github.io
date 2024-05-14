@@ -4,7 +4,7 @@ import math
 import subprocess
 import yaml
 
-ASSETS_PATH = Path('assets')
+ASSETS_PATH = Path('_site/assets')
 
 # Materials
 exam_names = ['midterm-1.qmd', 'midterm-2.qmd', 'final.qmd']
@@ -73,4 +73,4 @@ output = template({
   'homework': homework_info,
   'exam': exam_info,
   'practice_exam': practice_exam_info})    
-open('index.html', 'w').write(output)
+open('_site/index.html', 'w').write(output)
