@@ -46,20 +46,29 @@
 
 <div class="row"> 
 <h4> Homework </h4>
-<ul style="list-style-type:none">
+<table class="u-full-width"><tbody>
 {{#each homework}}
-  <li><a href="{{this.href}}">{{this.title}}</a></li>
+  <tr><td><a href="{{this.assignment_href}}">{{this.title}}</a></td><td><a href="{{this.solution_href}}">Solution</a></td></tr>
 {{/each}}
-</ul>
+</tbody></table>
 </div>
 
-<div class="row">
-<h4> Exams </h4>
-<ul style="list-style-type:none">
-{{#each exam}}
-  <li><a href="{{this.href}}">{{this.title}}</a></li>
+<div class="row"> 
+<h4> Practice Exams </h4>
+<table class="u-full-width"><tbody>
+{{#each practice_exam}}
+  <tr><td><a href="{{this.assignment_href}}">{{this.title}}</a></td><td><a href="{{this.solution_href}}">Solution</a></td></tr>
 {{/each}}
-</ul>
+</tbody></table>
+</div>
+
+<div class="row"> 
+<h4> Exams </h4>
+<table class="u-full-width"><tbody>
+{{#each exam}}
+  <tr><td><a href="{{this.assignment_href}}">{{this.title}}</a></td><td><a href="{{this.solution_href}}">Solution</a></td></tr>
+{{/each}}
+</tbody></table>
 </div>
 
 </div>
