@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Unzip gz files
+      - name: Unzip 
         run: |
           for file in $(find _site -name '*.html.gz'); do  
             echo "unzipping $file"
@@ -46,6 +46,6 @@ jobs:
           done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
