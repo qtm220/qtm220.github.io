@@ -20,14 +20,14 @@ def yaml_header(path):
 def rendered(path, dash_whatever=''):
   html_path = (ASSETS_PATH / path.relative_to('qtm220').parent / (path.with_suffix('').name + dash_whatever)).with_suffix('.html') 
   if (html_path.exists() and html_path.stat().st_mtime > path.stat().st_mtime):
-    return html_path
+    return html_path.relative_to('_site')
   print(f"rendering {html_path.name}")
   output=subprocess.run(['quarto', 'render', path.name], cwd=path.parent)
   if output.returncode:
-    return ASSETS_PATH / 'does-not-compile.html'
+    return (ASSETS_PATH / 'does-not-compile.html').relative_to('_site')
   else:
     path.with_suffix('.html').rename(html_path)
-    return html_path
+    return html_path.relative_to('_site')
 
 def rendered_with_callout(path, callout='assignment-callout.lua', dash_whatever=''):
   custom_callout = path.parent / 'custom-callout.lua'
