@@ -21,9 +21,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
   deploy:
     environment:
       name: github-pages
@@ -35,18 +32,19 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
+          name: github-pages
           path: |
-            'index.html'
-            'assets'
-            'css'
-            'images'
+            index.html
+            assets
+            css
+            images
       - name: Encrypt pages with PageCrypt
         run: |
           npm i -D pagecrypt
           PASSWORD="WdHXFuNAA7HQVtn1BDDY3EEOMaShYf5ruZJxVfjFwGOBlFRIemiMBfRkJYDayRxc34dA3HcmFYhBdoFp6KuPyOzypFIhi2Prw1X6gcgYRlKrdz9RHpNySzvHT1NqViCagzSHJgcamyDuKlTZbAM9OFYDykLjOuPoxDDwd20q0jkcJeeza5StMMTKKJ3RIompZBlksW8bsFbcEGgnxQwimsrsSNxaqItpodVzn422zFwfAZENDtUwrXkH6C75c9vv"
-          for file in $(find _site/assets -name 'midterm*.html' -o -name 'final*.html' -o -name 'homework*-solution.html'); do  
+          for file in $(find assets -name 'midterm*.html' -o -name 'final*.html' -o -name 'homework*-solution.html'); do  
             npx pagecrypt "$file" "$file" "$PASSWORD"
           done
       - name: Deploy to GitHub Pages
