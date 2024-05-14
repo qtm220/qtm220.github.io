@@ -31,10 +31,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Unzip 
+      - name: Unzip html files, which are gzipped but don't have that extension  
         run: |
-          for file in $(find _site -name '*.html.gz'); do  
-            gunzip $file --verbose
+          for file in $(find _site -name '*.html'); do  
+            mv $file $file.gz
+            gunzip $file.gz --verbose
           done
       - name: Encrypt pages with PageCrypt
         run: |
