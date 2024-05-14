@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8">
+<title>QTM 220</title>
+<meta name="class page" content="">
+<meta name="QTM 220" content="">
+<meta name="robots" content="noindex">
+
+<!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- FONT
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/skeleton.css">
+
+<!-- Favicon
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+<!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div class="container">
+
+<div class="row">
+<h4> Lectures </h4>
+<ul style="list-style-type:none">
+{{#each lecture}}
+  <li><a href="{{this.href}}">{{this.title}}.  {{this.subtitle}}</a></li>
+{{/each}}
+</ul>
+</div>
+
+
+<div class="row"> 
+<h4> Homework </h4>
+<ul style="list-style-type:none">
+{{#each homework}}
+  <li><a href="{{this.href}}">{{this.title}}</a></li>
+{{/each}}
+</ul>
+</div>
+
+<div class="row">
+<h4> Exams </h4>
+<ul style="list-style-type:none">
+{{#each exam}}
+  <li><a href="{{this.href}}">{{this.title}}</a></li>
+{{/each}}
+</ul>
+</div>
+
+</div>
+<!-- End Document
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

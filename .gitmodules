@@ -1,0 +1,3 @@
+[submodule "qtm220"]
+	path = qtm220
+	url = https://github.com/qtm220/qtm220.git
