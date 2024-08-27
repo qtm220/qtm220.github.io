@@ -48,29 +48,49 @@ def lecture_key(info):
   try: return int(info['title'].lstrip('Lecture'))
   except: return math.inf
 
-lecture_info = [yaml_header(path) | {"href": rendered(path)} for path in lectures]
-lecture_info.sort(key=lecture_key)
-
 # Render and Order Homework
 def homework_key(info): 
   try: return int(info['title'].lstrip('Homework'))
   except: return math.inf
 
-homework_info = [yaml_header(path) | assignment_and_solution(path) for path in homeworks]
-homework_info.sort(key=homework_key)
+def render_site():
+  lecture_info = [yaml_header(path) | {"href": rendered(path)} for path in lectures]
+  lecture_info.sort(key=lecture_key)
 
-# Render and Order Exams
-exam_info = [yaml_header(path) | assignment_and_solution(path) for path in exams]
-practice_exam_info = [yaml_header(path) | assignment_and_solution(path) for path in practice_exams]
+  homework_info = [yaml_header(path) | assignment_and_solution(path) for path in homeworks]
+  homework_info.sort(key=homework_key)
+
+  # Render and Order Exams
+  exam_info = [yaml_header(path) | assignment_and_solution(path) for path in exams]
+  practice_exam_info = [yaml_header(path) | assignment_and_solution(path) for path in practice_exams]
 
 
-# Render the Index Page
-compiler = Compiler()
-source = open("index.template", "r").read()
-template = compiler.compile(source)
-output = template({
-  'lecture': lecture_info,
-  'homework': homework_info,
-  'exam': exam_info,
-  'practice_exam': practice_exam_info})    
-open('_site/index.html', 'w').write(output)
+  # Render the Index Page
+  compiler = Compiler()
+  source = open("index.template", "r").read()
+  template = compiler.compile(source)
+  output = template({
+    'lecture': lecture_info,
+    'homework': homework_info,
+    'exam': exam_info,
+    'practice_exam': practice_exam_info})    
+  open('_site/index.html', 'w').write(output)
+
+def list_assets():
+  print('lectures')
+  lecture_info = [yaml_header(path) for path in lectures]
+  lecture_info.sort(key=lecture_key)
+  for info in lecture_info:
+    title = info['title']
+    subtitle = info['subtitle']
+    print(f"  {title}: {subtitle}")
+  
+if __name__ == '__main__':
+  import sys
+  if sys.argv[1] == 'render':
+    render_site()
+  if sys.argv[1] == 'clean':
+    for path in ASSETS_PATH.glob('**/*.html'):
+      path.unlink()
+  if sys.argv[1] == 'list':
+    list_assets()
